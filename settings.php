@@ -87,32 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && isset($_P
 <div class="container">
 <?php include('include/sidebar.php'); ?>
     <main>
-      <section class="quick-upload">
-        <h2>Quick Upload</h2>
-        <p class="choose-doc">Choose Document</p>
-        <select>
-          <option>Select document type</option>
-        </select>
-        <button>Upload</button>
-
-        <div class="eligibility-list">
-          <p class="title">Eligibility:</p>
-          <ol>
-            <li>Quality Point Average (QPA) must be at least 3.50 (B+) in the proceeding semester</li>
-            <li>Has no grade lower than 3.00(b)</li>
-            <li>Regular Student (no backload and advance subject taken)</li>
-            <li>Has taken only the course specified in his/her curriculum in the previous semester.</li>
-            <li>Has no grade if "Incomplete" upon encoding of the Faculty, nor a grade of "Dropped" or "Failed" in any subject including PATHFIT and NSTP.</li>
-            <li>Has not violated any of the rules and regulation of the school</li>
-            <li>Attended at least 80% of the total face to face /Online class periods.</li>
-          </ol>
-        </div>
-      </section>
-
-      <section class="eligibility-verification">
-        <h2>Eligibility Verification</h2>
-        <div class="waiting-message">Waiting for the documents upload</div>
-      </section>
+        <h1>Settings Window</h1>
     </main>
   </div>
 </body>

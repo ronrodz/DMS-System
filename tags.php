@@ -8,18 +8,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 'Admin') {
     exit();
 }
 
-// Fetch logged-in user's details
-$email = $_SESSION['email'] ?? '';
-
-if (!empty($email)) {
-    $sql = "SELECT * FROM user WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
-}
-
 // Initialize variables for alerts
 $successMessage = "";
 $errorMessage = "";
@@ -73,45 +61,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && isset($_P
 }
 ?>
 
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FEU Roosevelt Dean's List</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Docu Dashboard</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+ <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 <?php include('include/header.php'); ?>
 <div class="container">
 <?php include('include/sidebar.php'); ?>
     <main>
-      <section class="quick-upload">
-        <h2>Quick Upload</h2>
-        <p class="choose-doc">Choose Document</p>
-        <select>
-          <option>Select document type</option>
-        </select>
-        <button>Upload</button>
-
-        <div class="eligibility-list">
-          <p class="title">Eligibility:</p>
-          <ol>
-            <li>Quality Point Average (QPA) must be at least 3.50 (B+) in the proceeding semester</li>
-            <li>Has no grade lower than 3.00(b)</li>
-            <li>Regular Student (no backload and advance subject taken)</li>
-            <li>Has taken only the course specified in his/her curriculum in the previous semester.</li>
-            <li>Has no grade if "Incomplete" upon encoding of the Faculty, nor a grade of "Dropped" or "Failed" in any subject including PATHFIT and NSTP.</li>
-            <li>Has not violated any of the rules and regulation of the school</li>
-            <li>Attended at least 80% of the total face to face /Online class periods.</li>
-          </ol>
-        </div>
-      </section>
-
-      <section class="eligibility-verification">
-        <h2>Eligibility Verification</h2>
-        <div class="waiting-message">Waiting for the documents upload</div>
+      <h1 class="page-title">Tags</h1>
+      <section class="tags-list" aria-label="List of tags">
+        <ul>
+          <li>
+            <div class="tag-color tag-education" title="Education"></div>
+            <div class="tag-name">Education</div>
+          </li>
+          <li>
+            <div class="tag-color tag-urgent" title="Urgent"></div>
+            <div class="tag-name">Urgent</div>
+          </li>
+          <li>
+            <div class="tag-color tag-finance" title="Finance"></div>
+            <div class="tag-name">Finance</div>
+          </li>
+          <li>
+            <div class="tag-color tag-personal" title="Personal"></div>
+            <div class="tag-name">Personal</div>
+          </li>
+          <li>
+            <div class="tag-color" style="background:#f59e0b;" title="Pending"></div>
+            <div class="tag-name">Pending</div>
+          </li>
+          <li>
+            <div class="tag-color" style="background:#16a34a;" title="Approved"></div>
+            <div class="tag-name">Approved</div>
+          </li>
+          <li>
+            <div class="tag-color" style="background:#b91c1c;" title="Declined"></div>
+            <div class="tag-name">Declined</div>
+          </li>
+        </ul>
       </section>
     </main>
   </div>

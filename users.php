@@ -83,35 +83,65 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && isset($_P
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<?php include('include/header.php'); ?>
-<div class="container">
-<?php include('include/sidebar.php'); ?>
+<header>
+    <div>FEU Roosevelt Dean's List</div>
+    <div class="user">
+      <i class="fas fa-user-circle"></i>
+      <span><?php echo htmlspecialchars($user['user_name'] ?? 'User'); ?></span>
+    </div>
+</header>
+
+  <div class="container">
+  <?php include('include/sidebar.php'); ?>
+
     <main>
-      <section class="quick-upload">
-        <h2>Quick Upload</h2>
-        <p class="choose-doc">Choose Document</p>
-        <select>
-          <option>Select document type</option>
-        </select>
-        <button>Upload</button>
+    <!-- Success/Error Messages -->
+    <?php if (!empty($successMessage)): ?>
+        <div class="alert alert-success"><?php echo htmlspecialchars($successMessage); ?></div>
+    <?php endif; ?>
+    <?php if (!empty($errorMessage)): ?>
+        <div class="alert alert-danger"><?php echo htmlspecialchars($errorMessage); ?></div>
+    <?php endif; ?>
 
-        <div class="eligibility-list">
-          <p class="title">Eligibility:</p>
-          <ol>
-            <li>Quality Point Average (QPA) must be at least 3.50 (B+) in the proceeding semester</li>
-            <li>Has no grade lower than 3.00(b)</li>
-            <li>Regular Student (no backload and advance subject taken)</li>
-            <li>Has taken only the course specified in his/her curriculum in the previous semester.</li>
-            <li>Has no grade if "Incomplete" upon encoding of the Faculty, nor a grade of "Dropped" or "Failed" in any subject including PATHFIT and NSTP.</li>
-            <li>Has not violated any of the rules and regulation of the school</li>
-            <li>Attended at least 80% of the total face to face /Online class periods.</li>
-          </ol>
+    <section class="quick-upload">
+        <h2>Account Creation</h2>
+        <div class="container my-4">
+    <form method="post" action="users.php" class="user-form needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="user_name" class="form-label">Name</label>
+            <input type="text" name="user_name" id="user_name" class="form-control" required>
+            <div class="invalid-feedback">
+                Please enter a name.
+            </div>
         </div>
-      </section>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" id="email" class="form-control" required>
+            <div class="invalid-feedback">
+                Please enter a valid email.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" id="password" class="form-control" required>
+            <div class="invalid-feedback">
+                Please enter a password.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="role" class="form-label">Role</label>
+            <select name="role" id="role" class="form-select" required>
+                <option value="Admin">Admin</option>
+                <option value="Dean">Dean</option>
+                <option value="Student">Student</option>
+            </select>
+            <div class="invalid-feedback">
+                Please select a role.
+            </div>
+        </div>
 
-      <section class="eligibility-verification">
-        <h2>Eligibility Verification</h2>
-        <div class="waiting-message">Waiting for the documents upload</div>
+        <button type="submit" name="create_account" class="btn btn-primary">Create Account</button>
+    </form>
       </section>
     </main>
   </div>

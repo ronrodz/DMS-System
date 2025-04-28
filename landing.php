@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('db.php');
+include('include/db.php');
 
 // Retrieve messages from session and clear them
 $invalidPassword = $_SESSION['invalidPassword'] ?? "";
