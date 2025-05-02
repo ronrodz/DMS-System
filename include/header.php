@@ -11,6 +11,30 @@ if (isset($_SESSION['user_id'])) {
 }
 ?>
 
+<style>
+    header {
+    background-color: #3f51b5;
+    color: white;
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    font-weight: 600;
+    font-size: 1.125rem; /* 18px */
+    flex-shrink: 0;
+    }
+    header .user {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.875rem; /* 14px */
+    }
+    header .user i {
+        font-size: 1.125rem; /* 18px */
+    }
+</style>
+
 <header>
     <div onclick="window.location.href='landing.php'">Digi Docu</div>
     <div class="user">

@@ -49,10 +49,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 
             if ($user['role'] == 'Admin') {
                 header('Location: admin_dashboard.php');
-            } else {
+            } elseif ($user['role'] == 'Dean') {
+                header('Location: dean_dashboard.php');
+            } elseif ($user['role'] == 'Student') {
                 header('Location: homepage.php');
             }
             exit();
+            
         } else {
             $_SESSION['failed_attempts'] = ($_SESSION['failed_attempts'] ?? 0) + 1;
 
